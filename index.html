@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,45 +12,81 @@
       margin: 0; background: #080b10; color: #f4f7fb;
       font-family: Arial, sans-serif;
     }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .hidden { display: none !important; }
+    .auth-screen {
+      min-height: 100vh; display: grid; place-items: center;
+      padding: 22px;
+      background: radial-gradient(ellipse at top, #17352a, #080b10 65%);
+    }
+    .auth-card {
+      width: 100%; max-width: 410px; padding: 28px 22px;
+      border: 1px solid #25392f; border-radius: 22px;
+      background: #10161e;
+    }
+    .logo { font-size: 25px; font-weight: bold; }
+    .logo span { color: #39e6a1; }
+    .orb {
+      width: 60px; height: 60px; display: grid; place-items: center;
+      margin: 25px auto 15px; border-radius: 18px;
+      background: #1b382c; border: 1px solid #32694f;
+      color: #39e6a1; font-size: 30px;
+    }
+    .auth-card h1 { text-align: center; font-size: 25px; }
+    .muted { color: #8b98a8; line-height: 1.6; text-align: center; }
+    .field { display: block; margin: 16px 0; }
+    .field span { display: block; margin-bottom: 8px; font-size: 13px; }
+    input {
+      width: 100%; padding: 13px; border-radius: 10px;
+      color: #f4f7fb; background: #080b10;
+      border: 1px solid #303b48; outline: none;
+    }
+    input:focus { border-color: #39e6a1; }
+    .auth-btn {
+      width: 100%; padding: 13px; margin-top: 10px;
+      border-radius: 10px; border: 1px solid #303b48;
+      background: #18212b; color: #f4f7fb;
+    }
+    .primary { background: #39e6a1; color: #06140d; font-weight: bold; border: 0; }
+    .auth-btn:disabled { opacity: .6; }
+    .switch { text-align: center; margin-top: 20px; color: #8b98a8; font-size: 14px; }
+    .link { color: #39e6a1; background: none; border: 0; padding: 4px; }
+    .divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; color: #8b98a8; font-size: 12px; }
+    .divider:before, .divider:after { content: ""; height: 1px; background: #303b48; flex: 1; }
+    #notice { color: #39e6a1; font-size: 13px; line-height: 1.5; margin-top: 14px; overflow-wrap: anywhere; }
     .app { display: flex; min-height: 100vh; }
     aside {
-      width: 235px; padding: 25px 16px;
-      background: #0d1219; border-right: 1px solid #222c38;
-      display: flex; flex-direction: column; gap: 12px;
+      width: 235px; padding: 25px 16px; background: #0d1219;
+      border-right: 1px solid #222c38; display: flex;
+      flex-direction: column; gap: 12px;
     }
-    .logo { font-size: 24px; margin: 4px 0 28px; }
-    .logo span { color: #39e6a1; }
-    button {
+    aside .logo { margin: 4px 0 28px; }
+    aside button {
       padding: 13px; border: 1px solid transparent;
       border-radius: 11px; background: transparent;
       color: #f4f7fb; text-align: left; font-size: 15px;
-      cursor: pointer;
     }
-    button.active, button:hover {
+    aside button.active, aside button:hover {
       background: #14271f; border-color: #24583f; color: #39e6a1;
     }
-    .profile { margin-top: auto; color: #a5b0bd; font-size: 13px; }
+    .profile { margin-top: auto; color: #a5b0bd; font-size: 13px; overflow-wrap: anywhere; }
+    .profile button { width: 100%; margin-top: 12px; }
     main { flex: 1; min-width: 0; padding: 25px; }
     header {
       display: flex; justify-content: space-between; align-items: center;
       gap: 12px; border-bottom: 1px solid #222c38; padding-bottom: 20px;
     }
     header small { color: #8b98a8; letter-spacing: 2px; font-size: 10px; }
-    h1 { font-size: 27px; margin: 8px 0 0; }
+    h2 { font-size: 25px; }
     .online { color: #39e6a1; font-size: 11px; }
     .welcome {
       margin: 28px 0 20px; padding: 32px 18px; text-align: center;
       background: radial-gradient(ellipse at top, #17352a, #10161e 70%);
       border: 1px solid #25392f; border-radius: 22px;
     }
-    .orb {
-      margin: auto; width: 65px; height: 65px; display: grid;
-      place-items: center; color: #39e6a1; background: #1b382c;
-      border: 1px solid #32694f; border-radius: 20px; font-size: 32px;
-    }
     .welcome h2 { font-size: 25px; }
     .welcome p, .chat p { color: #8b98a8; line-height: 1.6; }
-    .primary { background: #39e6a1; color: #06140d; font-weight: bold; }
     .chat {
       display: flex; align-items: center; gap: 13px; padding: 15px;
       border: 1px solid #222c38; background: #10161e; border-radius: 15px;
@@ -63,63 +101,311 @@
     @media(max-width:600px) {
       .app { flex-direction: column; }
       aside { width: 100%; padding: 15px; border-right: 0; border-bottom: 1px solid #222c38; }
-      .logo { margin: 0 0 8px; }
+      aside .logo { margin: 0 0 8px; }
       aside button { padding: 10px; }
-      .profile { display: none; }
+      .profile { margin-top: 8px; }
       main { padding: 16px; }
       .welcome { padding: 27px 12px; }
     }
   </style>
 </head>
 <body>
-  <div class="app">
+
+  <!-- SIGN IN / SIGN UP -->
+  <section class="auth-screen" id="authScreen">
+    <div class="auth-card">
+      <div class="logo">✦ NOVA<span> CHAT</span></div>
+      <div class="orb">✦</div>
+      <h1 id="authTitle">Welcome back</h1>
+      <p class="muted" id="authDesc">Sign in and connect beyond borders.</p>
+
+      <form id="authForm">
+        <label class="field" id="nameField">
+          <span>Your name</span>
+          <input id="name" type="text" autocomplete="name"
+                 placeholder="Enter your name" maxlength="60">
+        </label>
+
+        <label class="field">
+          <span>Email address</span>
+          <input id="email" type="email" autocomplete="email"
+                 placeholder="you@example.com" required>
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input id="password" type="password"
+                 autocomplete="current-password"
+                 placeholder="At least 6 characters"
+                 minlength="6" required>
+        </label>
+
+        <button class="auth-btn primary" id="emailBtn" type="submit">
+          Sign In
+        </button>
+      </form>
+
+      <button class="auth-btn" id="googleBtn" type="button">
+        🌐 Continue with Google
+      </button>
+
+      <div class="divider">OR</div>
+
+      <div class="switch">
+        <span id="switchText">New to NOVA?</span>
+        <button class="link" id="switchBtn" type="button">Create account</button>
+      </div>
+
+      <div class="switch">
+        <button class="link" id="forgotBtn" type="button">
+          Forgot password?
+        </button>
+      </div>
+      <p id="notice" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- MAIN NOVA CHAT APP -->
+  <div class="app hidden" id="app">
     <aside>
       <div class="logo">✦ NOVA<span> CHAT</span></div>
       <button class="active" data-tab="Chats">💬 Chats</button>
       <button data-tab="Groups">👥 Groups</button>
       <button data-tab="Status">◉ Status</button>
       <button data-tab="Calls">📞 Calls</button>
-      <div class="profile">👤 NOVA User<br><br>Ready to connect</div>
+      <div class="profile">
+        👤 <span id="profileName">NOVA User</span>
+        <br><span id="profileEmail"></span>
+        <button id="logoutBtn">↪ Sign Out</button>
+      </div>
     </aside>
+
     <main>
       <header>
-        <div><small>YOUR WORLD, CONNECTED</small><h1 id="heading">Messages</h1></div>
+        <div>
+          <small>YOUR WORLD, CONNECTED</small>
+          <h2 id="heading">Messages</h2>
+        </div>
         <div class="online">● ONLINE</div>
       </header>
+
       <section class="welcome">
         <div class="orb">✦</div>
         <h2 id="title">Welcome to NOVA</h2>
         <p id="desc">One world. Endless conversations.</p>
-        <button class="primary" id="action">＋ Start a conversation</button>
+        <button class="auth-btn primary" id="action">
+          ＋ Start a conversation
+        </button>
       </section>
+
       <section class="chat">
         <div class="avatar">N</div>
-        <div><b>NOVA Chat</b><p id="message">Your next conversation starts here.</p></div>
+        <div>
+          <b>NOVA Chat</b>
+          <p id="message">Your next conversation starts here.</p>
+        </div>
       </section>
+
       <footer>✦ NOVA CHAT — MADE TO CONNECT</footer>
     </main>
   </div>
+
+  <!-- Firebase SDK: browser / script-tag version -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+
   <script>
+    // Your Firebase web app configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAFpoBPh6e_wBDK-Ea8209N6YCPM7W1ono",
+      authDomain: "nova-chat-885ae.firebaseapp.com",
+      projectId: "nova-chat-885ae",
+      storageBucket: "nova-chat-885ae.firebasestorage.app",
+      messagingSenderId: "834571969529",
+      appId: "1:834571969529:web:42863857f977f4d4f71328",
+      measurementId: "G-B07PL78J1J"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+    const $ = id => document.getElementById(id);
+    let isSignUp = false;
+    let busy = false;
+
+    function showNotice(message, error = false) {
+      $("notice").textContent = message;
+      $("notice").style.color = error ? "#ff8585" : "#39e6a1";
+    }
+
+    function setBusy(value) {
+      busy = value;
+      $("emailBtn").disabled = value;
+      $("googleBtn").disabled = value;
+      $("switchBtn").disabled = value;
+      $("forgotBtn").disabled = value;
+    }
+
+    function friendlyError(error) {
+      const messages = {
+        "auth/email-already-in-use": "This email already has an account. Try signing in.",
+        "auth/invalid-email": "Please enter a valid email address.",
+        "auth/weak-password": "Choose a stronger password with at least 6 characters.",
+        "auth/user-not-found": "Account not found. Create an account first.",
+        "auth/wrong-password": "Incorrect email or password.",
+        "auth/invalid-credential": "Email or password is incorrect.",
+        "auth/popup-closed-by-user": "Google sign-in was cancelled. Try again.",
+        "auth/unauthorized-domain": "This website domain is not authorized in Firebase.",
+        "auth/network-request-failed": "Network error. Check your internet connection.",
+        "auth/too-many-requests": "Too many attempts. Please try again later.",
+        "auth/operation-not-allowed": "Enable this sign-in method in Firebase Authentication."
+      };
+      return messages[error.code] ||
+        (error.message || "Something went wrong. Please try again.");
+    }
+
+    function updateAuthMode() {
+      $("authTitle").textContent = isSignUp ? "Create your account" : "Welcome back";
+      $("authDesc").textContent = isSignUp
+        ? "Join NOVA and connect beyond borders."
+        : "Sign in and connect beyond borders.";
+      $("nameField").classList.toggle("hidden", !isSignUp);
+      $("name").required = isSignUp;
+      $("password").autocomplete = isSignUp ? "new-password" : "current-password";
+      $("emailBtn").textContent = isSignUp ? "Create Account" : "Sign In";
+      $("switchText").textContent = isSignUp ? "Already registered?" : "New to NOVA?";
+      $("switchBtn").textContent = isSignUp ? "Sign in" : "Create account";
+      $("forgotBtn").classList.toggle("hidden", isSignUp);
+      showNotice("");
+    }
+
+    $("switchBtn").addEventListener("click", () => {
+      if (busy) return;
+      isSignUp = !isSignUp;
+      updateAuthMode();
+    });
+
+    $("authForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      if (busy) return;
+
+      const email = $("email").value.trim();
+      const password = $("password").value;
+      const name = $("name").value.trim();
+
+      if (isSignUp && !name) {
+        showNotice("Please enter your name.", true);
+        return;
+      }
+
+      setBusy(true);
+      showNotice(isSignUp ? "Creating your account..." : "Signing in...");
+
+      try {
+        let result;
+
+        if (isSignUp) {
+          result = await auth.createUserWithEmailAndPassword(email, password);
+          await result.user.updateProfile({ displayName: name });
+        } else {
+          result = await auth.signInWithEmailAndPassword(email, password);
+        }
+      } catch (error) {
+        showNotice(friendlyError(error), true);
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    $("googleBtn").addEventListener("click", async () => {
+      if (busy) return;
+
+      setBusy(true);
+      showNotice("Opening Google sign-in...");
+
+      try {
+        // Redirect is generally more reliable than a popup on mobile browsers.
+        await auth.signInWithRedirect(googleProvider);
+      } catch (error) {
+        showNotice(friendlyError(error), true);
+        setBusy(false);
+      }
+    });
+
+    $("forgotBtn").addEventListener("click", async () => {
+      const email = $("email").value.trim();
+
+      if (!email) {
+        showNotice("Enter your email address first.", true);
+        $("email").focus();
+        return;
+      }
+
+      setBusy(true);
+      try {
+        await auth.sendPasswordResetEmail(email);
+        showNotice("If an account exists for this email, a password reset email has been sent.");
+      } catch (error) {
+        showNotice(friendlyError(error), true);
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    $("logoutBtn").addEventListener("click", async () => {
+      try {
+        await auth.signOut();
+        showNotice("You have signed out.");
+      } catch (error) {
+        alert(friendlyError(error));
+      }
+    });
+
+    // Firebase keeps track of the signed-in user.
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        $("authScreen").classList.add("hidden");
+        $("app").classList.remove("hidden");
+        $("profileName").textContent =
+          user.displayName || user.email.split("@")[0] || "NOVA User";
+        $("profileEmail").textContent = user.email || "";
+        $("profileName").title = user.uid;
+      } else {
+        $("app").classList.add("hidden");
+        $("authScreen").classList.remove("hidden");
+      }
+    });
+
+    // Restore the result when Google redirects back to the site.
+    auth.getRedirectResult().catch(error => {
+      showNotice(friendlyError(error), true);
+    });
+
     const content = {
       Chats: ["Messages", "Welcome to NOVA", "One world. Endless conversations.", "＋ Start a conversation"],
       Groups: ["Your Groups", "Better Together", "Create a space for your friends.", "＋ Create a group"],
       Status: ["Status Updates", "Share Your Moment", "Let your friends know what is happening.", "＋ Add a status"],
       Calls: ["Your Calls", "Stay Connected", "Voice and video calling will be added in a later step.", "＋ Start a call"]
     };
+
     document.querySelectorAll("[data-tab]").forEach(button => {
       button.addEventListener("click", () => {
         document.querySelectorAll("[data-tab]").forEach(b => b.classList.remove("active"));
         button.classList.add("active");
+
         const c = content[button.dataset.tab];
-        document.getElementById("heading").textContent = c[0];
-        document.getElementById("title").textContent = c[1];
-        document.getElementById("desc").textContent = c[2];
-        document.getElementById("action").textContent = c[3];
+        $("heading").textContent = c[0];
+        $("title").textContent = c[1];
+        $("desc").textContent = c[2];
+        $("action").textContent = c[3];
       });
     });
-    document.getElementById("action").addEventListener("click", () => {
-      alert("NOVA Chat design is ready! Real accounts and messaging are our next step.");
+
+    $("action").addEventListener("click", () => {
+      alert("NOVA account is connected! Real-time messaging is the next development step.");
     });
   </script>
 </body>
 </html>
+
