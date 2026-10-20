@@ -1,1 +1,125 @@
-
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b10">
+  <title>NOVA Chat — Connect Beyond Borders</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: #080b10; color: #f4f7fb;
+      font-family: Arial, sans-serif;
+    }
+    .app { display: flex; min-height: 100vh; }
+    aside {
+      width: 235px; padding: 25px 16px;
+      background: #0d1219; border-right: 1px solid #222c38;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .logo { font-size: 24px; margin: 4px 0 28px; }
+    .logo span { color: #39e6a1; }
+    button {
+      padding: 13px; border: 1px solid transparent;
+      border-radius: 11px; background: transparent;
+      color: #f4f7fb; text-align: left; font-size: 15px;
+      cursor: pointer;
+    }
+    button.active, button:hover {
+      background: #14271f; border-color: #24583f; color: #39e6a1;
+    }
+    .profile { margin-top: auto; color: #a5b0bd; font-size: 13px; }
+    main { flex: 1; min-width: 0; padding: 25px; }
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; border-bottom: 1px solid #222c38; padding-bottom: 20px;
+    }
+    header small { color: #8b98a8; letter-spacing: 2px; font-size: 10px; }
+    h1 { font-size: 27px; margin: 8px 0 0; }
+    .online { color: #39e6a1; font-size: 11px; }
+    .welcome {
+      margin: 28px 0 20px; padding: 32px 18px; text-align: center;
+      background: radial-gradient(ellipse at top, #17352a, #10161e 70%);
+      border: 1px solid #25392f; border-radius: 22px;
+    }
+    .orb {
+      margin: auto; width: 65px; height: 65px; display: grid;
+      place-items: center; color: #39e6a1; background: #1b382c;
+      border: 1px solid #32694f; border-radius: 20px; font-size: 32px;
+    }
+    .welcome h2 { font-size: 25px; }
+    .welcome p, .chat p { color: #8b98a8; line-height: 1.6; }
+    .primary { background: #39e6a1; color: #06140d; font-weight: bold; }
+    .chat {
+      display: flex; align-items: center; gap: 13px; padding: 15px;
+      border: 1px solid #222c38; background: #10161e; border-radius: 15px;
+    }
+    .avatar {
+      width: 42px; height: 42px; display: grid; place-items: center;
+      flex-shrink: 0; border-radius: 50%; background: #17382b;
+      color: #39e6a1; font-weight: bold;
+    }
+    .chat p { margin: 6px 0 0; font-size: 13px; }
+    footer { margin-top: 30px; color: #8b98a8; font-size: 10px; letter-spacing: 2px; }
+    @media(max-width:600px) {
+      .app { flex-direction: column; }
+      aside { width: 100%; padding: 15px; border-right: 0; border-bottom: 1px solid #222c38; }
+      .logo { margin: 0 0 8px; }
+      aside button { padding: 10px; }
+      .profile { display: none; }
+      main { padding: 16px; }
+      .welcome { padding: 27px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <div class="logo">✦ NOVA<span> CHAT</span></div>
+      <button class="active" data-tab="Chats">💬 Chats</button>
+      <button data-tab="Groups">👥 Groups</button>
+      <button data-tab="Status">◉ Status</button>
+      <button data-tab="Calls">📞 Calls</button>
+      <div class="profile">👤 NOVA User<br><br>Ready to connect</div>
+    </aside>
+    <main>
+      <header>
+        <div><small>YOUR WORLD, CONNECTED</small><h1 id="heading">Messages</h1></div>
+        <div class="online">● ONLINE</div>
+      </header>
+      <section class="welcome">
+        <div class="orb">✦</div>
+        <h2 id="title">Welcome to NOVA</h2>
+        <p id="desc">One world. Endless conversations.</p>
+        <button class="primary" id="action">＋ Start a conversation</button>
+      </section>
+      <section class="chat">
+        <div class="avatar">N</div>
+        <div><b>NOVA Chat</b><p id="message">Your next conversation starts here.</p></div>
+      </section>
+      <footer>✦ NOVA CHAT — MADE TO CONNECT</footer>
+    </main>
+  </div>
+  <script>
+    const content = {
+      Chats: ["Messages", "Welcome to NOVA", "One world. Endless conversations.", "＋ Start a conversation"],
+      Groups: ["Your Groups", "Better Together", "Create a space for your friends.", "＋ Create a group"],
+      Status: ["Status Updates", "Share Your Moment", "Let your friends know what is happening.", "＋ Add a status"],
+      Calls: ["Your Calls", "Stay Connected", "Voice and video calling will be added in a later step.", "＋ Start a call"]
+    };
+    document.querySelectorAll("[data-tab]").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll("[data-tab]").forEach(b => b.classList.remove("active"));
+        button.classList.add("active");
+        const c = content[button.dataset.tab];
+        document.getElementById("heading").textContent = c[0];
+        document.getElementById("title").textContent = c[1];
+        document.getElementById("desc").textContent = c[2];
+        document.getElementById("action").textContent = c[3];
+      });
+    });
+    document.getElementById("action").addEventListener("click", () => {
+      alert("NOVA Chat design is ready! Real accounts and messaging are our next step.");
+    });
+  </script>
+</body>
+</html>
